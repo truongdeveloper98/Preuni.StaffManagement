@@ -1,0 +1,457 @@
+﻿@using static PreUni.StaffManagement.Domain.Enum.CommonEnum;
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewData["Title"] = "TFN Declare";
+}
+@await Html.PartialAsync("_sideBarPartialView")
+
+<div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid between mb-10" data-kt-stepper="true">
+    @await Html.PartialAsync("_menuPartialView")
+    <div class="d-flex flex-row-fluid flex-center bg-body rounded mt-5" id="content-side">
+        <div class="py-20 w-100 w-xl-700px px-9 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+            <div data-kt-stepper-element="content" class="current step-content" id="step-content-payee">
+                <!--begin::Wrapper-->
+                <div class="w-100">
+                    <!--begin::Heading-->
+                    <div class="pb-10 pb-lg-15">
+                        <!--begin::Title-->
+                        <h2 class="fw-bolder d-flex align-items-center text-dark">To be completed by the PAYEE</h2>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="group-item">
+                        <form id="payeeForm">
+                            <input type="hidden" id="tfn-Id" value="0">
+                            <input type="hidden" class="form-control" maxlength="11" id="crimeRef" name="crimeRef" placeholder="Crime reference"
+                                   value="@(ViewBag.JobApplicationId)">
+                            <!-- 1 -->
+                            <div class="mb-3">
+                                <label for="taxFileNumber" class="form-label">
+                                    <strong>1. What is your tax file number (TFN)?</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                @*<input type="text" class="form-control" id="taxFileNumber" name="taxFileNumber" value="">*@
+                                <div class="mt-3">
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="taxFileNumberOpt" id="taxFileNumberOpt1" value="1">
+                                        <label class="form-check-label">
+                                            <strong>IF</strong> You have tax file number
+                                        </label>
+                                        <input type="text" class="form-control" id="taxFileNumber" name="taxFileNumber" value="">
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="taxFileNumberOpt" id="taxFileNumberOpt2" value="2">
+                                        <label class="form-check-label" >
+                                            <strong>OR</strong> I have made a separate application/enquiry to
+                                            the ATO for a new or existing TFN
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="taxFileNumberOpt" id="taxFileNumberOpt3" value="3">
+                                        <label class="form-check-label" >
+                                            <strong>OR</strong> I am claiming an exemption because I am under
+                                            18 years of age and do not earn enough to pay tax
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="taxFileNumberOpt" id="taxFileNumberOpt4" value="4">
+                                        <label class="form-check-label" >
+                                            <strong>OR</strong> I am claiming an exemption because I am in
+                                            receipt of a pension, benefit or allowance
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-taxFileNumberOpt" class="errorMessage"></span>
+                            </div>
+
+                            <!-- 2 -->
+                            <div class="mb-3">
+                                <label for="nameTitle" class="form-label"><strong>2. What is your name?</strong><span class="required-star">*</span></label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="nameTitle" id="nameTitle1" value="Mr">
+                                        <label class="form-check-label" for="nameTitle1">Mr</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="nameTitle" id="nameTitle2" value="Mrs">
+                                        <label class="form-check-label" for="nameTitle2">Mrs</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="nameTitle" id="nameTitle3" value="Miss">
+                                        <label class="form-check-label" for="nameTitle3">Miss</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="nameTitle" id="nameTitle4" value="Ms">
+                                        <label class="form-check-label" for="nameTitle4">Ms</label>
+                                    </div>
+                                </div>
+                                <span id="error-nameTitle" class="errorMessage"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="surname" class="form-label">Surname or family name<span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="surname" name="surname" value="">
+                                <span id="error-surname" class="errorMessage"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First given name<span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" value="">
+                                <span id="error-firstName"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="otherName" class="form-label">Other given names</label>
+                                <input type="text" class="form-control" id="otherName" value="">
+                                
+                            </div>
+
+                            <!-- 3 -->
+                            <div class="mb-3">
+                                <label for="previousFamilyName" class="form-label">
+                                    <strong>3. If you have changed your name since you last dealt with the ATO, provide your previous family name.</strong>
+                                   
+                                </label>
+                                <input type="text" class="form-control" id="previousFamilyName" value="">
+                            </div>
+
+                            <!-- 4 -->
+                            <div class="mb-3">
+                                <label for="dayOfBirth" class="form-label">
+                                    <strong>
+                                        4. What is your date of birth?
+                                    </strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        @{
+                                            IEnumerable<int> dayList = Enumerable.Range(1, 31);
+                                        }
+                                        <select class="form-select" aria-label="Default select example" id="dayOfBirth" name="dayOfBirth">
+                                            <option selected value="">--- Day ---</option>
+                                            @foreach (var day in dayList)
+                                            {
+                                                <option value="@day">@day</option>
+                                            }
+                                        </select>
+                                        <span id="error-dayOfBirth" class="errorMessage"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        @{
+                                            var monthList = Enum.GetValues(typeof(MonthEnum))
+                                            .Cast<MonthEnum>()
+                                            .ToDictionary(x => (int)x, x => x);
+                                            //IEnumerable<int> monthList = Enumerable.Range(1, 12);
+                                        }
+                                        <select class="form-select" aria-label="Default select example" id="monthOfBirth" name="monthOfBirth">
+                                            <option selected value="">--- Month ---</option>
+                                            @foreach (var month in monthList)
+                                            {
+                                                <option value="@month.Key">@month.Value</option>
+                                            }
+                                        </select>
+                                        <span id="error-monthOfBirth" class="errorMessage"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        @{
+                                            int startYear = 1980;
+                                            int currentYear = DateTime.Now.Year;
+                                            IEnumerable<int> yearList = Enumerable.Range(startYear, currentYear - startYear + 1);
+                                        }
+                                        <select class="form-select" aria-label="Default select example" id="yearOfBirth" name="yearOfBirth">
+                                            <option selected value="">--- Year ---</option>
+                                            @foreach (var year in yearList)
+                                            {
+                                                <option value="@year">@year</option>
+                                            }
+                                        </select>
+                                        <span id="error-yearOfBirth" class="errorMessage"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5 -->
+                            <div class="mb-3">
+                                <label for="homeAddress" class="form-label">
+                                    <strong>5. What is your home address in Australia?</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="homeAddress" name="homeAddress" value="">
+                                <span id="error-homeAddress" class="errorMessage"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="suburb" class="form-label">Suburb/town/locality<span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="suburb" name="suburb" value="">
+                                <span id="error-suburb" class="errorMessage"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="state" class="form-label">State/territory<span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="state" name="state" value="">
+                                <span id="error-state" class="errorMessage"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="postCode" class="form-label">PostCode<span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="postCode" name="postCode" value="">
+                                <span id="error-postCode" class="errorMessage"></span>
+                            </div>
+
+                            <!-- 6 -->
+                            <div class="mb-3">
+                                <label for="paidBasis" class="form-label">
+                                    <strong>6. On what basis are you paid? (select only one)</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="paidBasis" id="paidBasis1" value="1">
+                                        <label class="form-check-label" for="paidBasis1">
+                                            Full‑time employment
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="paidBasis" id="paidBasis2" value="2">
+                                        <label class="form-check-label" for="paidBasis2">
+                                            Part‑time employment
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="paidBasis" id="paidBasis3" value="3">
+                                        <label class="form-check-label" for="paidBasis3">
+                                            Labour hire
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="paidBasis" id="paidBasis4" value="4">
+                                        <label class="form-check-label" for="paidBasis4">
+                                            Superannuation or annuity income stream
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="paidBasis" id="paidBasis5" value="5">
+                                        <label class="form-check-label" for="paidBasis5">
+                                            Casual employment
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-paidBasis" class="errorMessage"></span>
+                            </div>
+
+                            <!-- 7 -->
+                            <div class="mb-3">
+                                <label for="residencyStatus" class="form-label">
+                                    <strong>7. Are you an Australian resident for tax purpose</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="residencyStatus" id="residencyStatus1" value="true">
+                                        <label class="form-check-label" for="residencyStatus1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="residencyStatus" id="residencyStatus2" value="false">
+                                        <label class="form-check-label" for="residencyStatus2">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <span id="error-residencyStatus" class="errorMessage"></span>
+                            </div>
+
+
+                            <!-- 8 -->
+                            <div class="mb-3">
+                                <label for="claimTaxFree" class="form-label">
+                                    <strong>8. Do you want to claim the tax-free threshold from this payer?</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="description-title">
+                                    Only claim the tax‑free threshold from one payer at a time, unless your total income from all sources for the financial year will be less than the tax‑free threshold.
+                                </div>
+                                <div class="description-title">
+                                    Answer <strong>no</strong> here if you are a foreign resident or working holiday maker, except if you are a foreign resident in receipt of an Australian Government pension or allowance
+                                </div>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimTaxFree" id="claimTaxFree1" value="true">
+                                        <label class="form-check-label" for="claimTaxFree1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimTaxFree" id="claimTaxFree0" value="false">
+                                        <label class="form-check-label" for="claimTaxFree0">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-claimTaxFree" class="errorMessage"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="claimSenior" class="form-label">
+                                    <strong>9. Do you want to claim the seniors and pensioner tax offset by reducing the amount withheld from payments made to you?</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="description-title">
+                                    Complete a Withholding declaration (NAT 3093), but only if you are claiming the tax-free threshold from this payer. If you have more than one payer, see page 3 of the instructions.
+                                </div>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimSenior" id="claimSenior1" value="true" required>
+                                        <label class="form-check-label" for="claimSenior1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimSenior" id="claimSenior0" value="false" required>
+                                        <label class="form-check-label" for="claimSenior0">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-claimSenior" class="errorMessage"></span>
+                            </div>
+
+                            <!-- 10 -->
+                            <div class="mb-3">
+                                <label for="claimZone" class="form-label">
+                                    <strong>10. Do you want to claim a zone, overseas forces or invalid and invalid carer tax offset by reducing the amount withheld from payment made to you?</strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="description-title">
+                                    Complete a Withholding declaration (NAT 3093).
+                                </div>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimZone" id="claimZone1" value="true" required>
+                                        <label class="form-check-label" for="claimZone1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="claimZone" id="claimZone0" value="false" required>
+                                        <label class="form-check-label" for="claimZone0">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-claimZone" class="errorMessage"></span>
+                            </div>
+
+                            <!-- 11 -->
+                            <div class="mb-3">
+                                <label for="haveLoanProgram" class="form-label">
+                                    <strong>
+                                        11. (a) Do you have a Higher Education Loan Program (HELP), Student Start-up Loan (SSL) or Trade Support Loan (TSL) debt?
+                                    </strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="description-title">
+                                    Your payer will withhold additional amounts to cover any compulsory repayment that may be raised on your notice of assessment.
+                                </div>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="haveLoanProgram" id="haveLoanProgram1" value="true" required>
+                                        <label class="form-check-label" for="haveLoanProgram1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="haveLoanProgram" id="haveLoanProgram0" value="false" required>
+                                        <label class="form-check-label" for="haveLoanProgram0">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+                                    <span id="error-haveLoanProgram" class="errorMessage"></span>
+                                </div>
+
+                                <label for="haveFinancialSupplement" class="form-label">
+                                    <strong>
+                                        (b) Do you have a Financial Supplement debt?
+                                    </strong>
+                                    <span class="required-star">*</span>
+                                </label>
+                                <div class="description-title">
+                                    Your payer will withhold additional amounts to cover any compulsory repayment that may be raised on your notice of assessment.
+                                </div>
+                                <div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="haveFinancialSupplement" id="haveFinancialSupplement1" value="true">
+                                        <label class="form-check-label" for="haveLoanProgram1">
+                                            <strong>Yes</strong>
+                                        </label>
+                                    </div>
+                                    <div class="form-check pb-2">
+                                        <input class="form-check-input" type="radio" name="haveFinancialSupplement" id="haveFinancialSupplement0" value="false">
+                                        <label class="form-check-label" for="haveLoanProgram0">
+                                            <strong>No</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span id="error-haveFinancialSupplement" class="errorMessage"></span>
+
+                                <div><strong>DECLARATION by peyee:</strong> I declare that the information I have given is true and correct</div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <label for="fundSignature" class="form-label">
+                                            Signature
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="SignatureTFN" name="SignatureTFN" value="" placeholder="You MUST SIGN here">
+                                        <span id="error-signatureTFN" class="errorMessage"></span>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="dateFund" class="form-label">
+                                            Date
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="date" name="signDateTFN" class="form-control" id="signDateTFN" placeholder="dd-mm-yyyy" value=""/> 
+                                        <span id="error-signDateTFN" class="errorMessage"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-stack pt-10">
+                        <!--begin::Wrapper-->
+                        <div class="mr-2">
+                        </div>
+                        <!--end::Wrapper-->
+                        <!--begin::Wrapper-->
+                        <div>
+                            <button type="button" class="btn btn-lg btn-primary" onclick="submitPayee()">
+                                Save & Continue
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                                <span class="svg-icon svg-icon-4 ms-1 me-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="black"></rect>
+                                        <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </button>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
+    <script src="~/js/tfnDeclare.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.js"></script>
+}

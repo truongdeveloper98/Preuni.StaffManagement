@@ -1,0 +1,30 @@
+﻿<div>
+    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" onclick="clickSidebar()">
+    <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="spinner diagonal part-1"></div>
+        <div class="spinner horizontal"></div>
+        <div class="spinner diagonal part-2"></div>
+    </label>
+    <div id="sidebarMenu">
+        <ul class="sidebarMenuInner">
+            <li>
+                <a href="javascript:void(0);" onclick="getPayeeStep(true)">1. Payee</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="getBankAccountStep(true)">2. Bank Account Detail</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="getSuperannuationStep(true)">3. Superannuation</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="getParentConsentStep(true)" id="side-parent-step">4. Perent/Guardian Consent</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="getIdentityProoImageStep(true)">5. Upload image</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<input hidden id="email-register" value="@ViewBag.Email" />
+<input hidden id="jobApplicationId" value="@ViewBag.JobApplicationId" />

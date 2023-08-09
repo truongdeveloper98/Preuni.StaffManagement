@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "module": "NodeNext",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    },
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "src/declaration.d.ts"]
+}

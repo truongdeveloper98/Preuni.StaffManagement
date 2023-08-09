@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewData["Title"] = "Identity Proo Image";
+}
+@await Html.PartialAsync("_sideBarPartialView")
+
+<div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid between mb-10" data-kt-stepper="true">
+    @await Html.PartialAsync("_menuPartialView")
+    <div class="d-flex flex-row-fluid flex-center bg-body rounded mt-5" id="content-side">
+        <div class="py-20 w-100 w-xl-700px px-9 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+            <!--begin::Step 5-->
+            <div  class="pending step-content" id="step-content-identity-proof">
+                <!--begin::Wrapper-->
+                <div class="w-100">
+                    <!--begin::Heading-->
+                    <div class="pb-10 pb-lg-12">
+                        <!--begin::Title-->
+                        <h2 class="fw-bolder text-dark">Identity Proof Image</h2>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="group-item">
+                        <form id="identityProofForm">
+                            <div class="mb-5">
+                                <label for="Image" class="form-label">Image (.PNG, .JPG, .JPEG)</label>
+                                <input class="form-control" type="file" id="imageFile" name="imageFile" accept="image/*" onchange="preview()" required>
+                                <div class="text-right">
+                                    <button onclick="clearImage()" class="btn btn-danger mt-3">Clear Image</button>
+                                </div>
+
+                            </div>
+                            
+                            <img id="frame" src="" class="img-fluid" />
+                        </form>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-stack pt-10">
+                        <!--begin::Wrapper-->
+                        <div class="mr-2">
+                            <button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous" onclick="getBackStep()">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+                                <span class="svg-icon svg-icon-4 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="black"></rect>
+                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Back
+                            </button>
+                        </div>
+                        <!--end::Wrapper-->
+                        <!--begin::Wrapper-->
+                        <div>
+                            <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next" onclick="submitIdentityProofImage()">
+                                Save
+                                <!--end::Svg Icon-->
+                            </button>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--end::Step 5-->
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/identityProoImage.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.js"></script>
+}

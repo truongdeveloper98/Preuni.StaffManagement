@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.9" />
+  </ItemGroup>
+
+
+   <ItemGroup>
+    <ProjectReference Include="..\PreUni.StaffManagement.Core\PreUni.StaffManagement.Core.csproj" />
+    <ProjectReference Include="..\PreUni.StaffManagement.Domain\PreUni.StaffManagement.Domain.csproj" />
+  </ItemGroup>
+</Project>

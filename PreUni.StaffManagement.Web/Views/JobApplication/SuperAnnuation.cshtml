@@ -1,0 +1,432 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewData["Title"] = "Superannuation";
+}
+@await Html.PartialAsync("_sideBarPartialView")
+
+<div class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid between mb-10" data-kt-stepper="true">
+    @await Html.PartialAsync("_menuPartialView")
+    <div class="d-flex flex-row-fluid flex-center bg-body rounded mt-5" id="content-side">
+        <div class="py-20 w-100 w-xl-700px px-9 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+            <div  class="pending step-content" id="step-content-superannuation">
+                <!--begin::Wrapper-->
+                <div class="w-100">
+                    <!--begin::Heading-->
+                    <div class="pb-10 pb-lg-12">
+                        <!--begin::Title-->
+                        <h2 class="fw-bolder" style="color:blue"><strong>Section A:</strong> Your Details</h2>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Input group-->
+                    <div class="group-item">
+                        <form id="superannuationForm">
+                            <!-- 1 -->
+                            <div class="mb-3">
+                                <label for="employeeName" class="form-label">
+                                    Full Name<span class="required-star">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="employeeName" name="employeeName" value="">
+                                <p id="employeeNameS" class="error"></p>
+                            </div>
+                            <div class="mb-3"> 
+                                <label for="employeeNumber" class="form-label">
+                                    Employee identification number (if applicable)
+                                    <span class="required-star">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="employeeNumber" name="employeeNumber" value="">
+                                <p id="employeeNumberS" class="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="employeeTaxFileNumber" class="form-label">
+                                    Tax file number (TFN)
+                                </label>
+                                <input type="text" class="form-control" id="employeeTaxFileNumber" name="employeeTaxFileNumber" value="">
+                            </div>
+                            <br>
+                            <div>
+                                <p>
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    You don’t have to provide your TFN but if you don’t, there
+                                    may be consequences such as your contributions being
+                                    taxed at a higher rate. See
+                                    <strong>page 5</strong> for more information.
+                                </p>
+                            </div>
+                            
+                            <!--Section B-->
+                            <div style="margin-top: 10px">
+                                <p>
+                                    <input type="checkbox" id="trigger1" name="question" class="form-check-input" value="1">
+                                    <strong class="section-text">My existing super fund</strong>
+                                </p>
+                            </div>
+                            <div style="margin-top: 10px">
+                                <p>
+                                    <input type="checkbox" id="trigger2" name="question" class="form-check-input" value="2">
+                                    <strong class="section-text">My employer’s default super fund</strong>
+                                </p>
+                            </div>
+                            <div style="margin-top: 10px">
+                                <p>
+                                    <input type="checkbox" id="trigger3" name="question" class="form-check-input" value="3">
+                                    <strong class="section-text">
+                                        My private self-managed super fund (SMSF)
+                                    </strong>
+                                </p>
+                            </div>
+                            <p id="superAnnuationTypeS" class="error"></p>
+                            <div id="hidden_fields1" style="margin-top: 20px">
+                                <div id="hidden_field1" name="hidden">
+                                    <div class="mb-3">
+                                        <h2 class="fw-bolder" style="color:purple;"><strong>Section B:</strong> My existing super fund</h2>
+                                        <h3 class="">Super fund details</h3>
+                                        <p>
+                                            <i class="fa-solid fa-circle-info"></i> You can find your super fund details by:
+                                        </p>
+                                        <ul>
+                                            <li>logging into your super fund member portal or online account</li>
+                                            <li>contacting your super fund directly</li>
+                                            <li>through ATO online services via myGov or the ATO app.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="employeeFundName" class="form-label">
+                                            Super Fund name
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="employeeFundName" name="employeeFundName" value="">
+                                        <p id="employeeFundNameS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fundBusinessNumber" class="form-label">
+                                            Super fund Australian business number (ABN)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="fundBusinessNumber" name="fundBusinessNumber" value="">
+                                        <p id="fundBusinessNumberS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fundAnnuationIdentifi" class="form-label">
+                                            Unique superannuation identifier (USI)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="fundAnnuationIdentifi" name="fundAnnuationIdentifi" value="">
+                                        <p id="fundAnnuationIdentifiS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> The USI is used to identify different super funds and specific super fund products. It is different to your member account number.
+                                        You can find your USI on your super fund’s website or by contacting your super fund directly.
+                                    </p>
+                                    <div class="mb-3">
+                                        <label for="fundAccountNumber" class="form-label">
+                                            Your member account number
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="fundAccountNumber" name="fundAccountNumber" value="">
+                                        <p id="fundAccountNumberS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> You can find your member account number on your member account statement, by logging into your super fund account,
+                                        contacting your super fund directly or through ATO online services via myGov or the ATO app.
+                                    </p>
+                                    <div class="mb-3">
+                                        <label for="fundAppearName" class="form-label">
+                                            Your name as it appears on your account
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="fundAppearName" name="fundAppearName" value="">
+                                        <p id="fundAppearNameS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> This must match the name shown on your super account. This may be your current name, or a previous name
+                                    </p>
+                                    <p>
+                                        <strong>Required documentation</strong>
+                                    </p>
+                                    <p>
+                                        You need to <strong> attach a letter of compliance of your chosen super fund </strong> to confirm it is a complying fund and can accept contributions
+                                        from your employer.
+                                    </p>
+                                    <p>
+                                        For most super funds you can find their letter of compliance on their website. For other funds, you will need to contact them for this
+                                        information.
+                                    </p>
+                                    <div class="mb-3">
+                                        <input class="form-check-input" type="checkbox" value="true" id="fundAttachLetter" name="fundAttachLetter">
+                                        <label class="form-check-label" for="fundAttachLetter">
+                                            I have attached a letter of compliance from my super fund
+                                        </label>
+                                    </div>
+                                    <h3>Declaration</h3>
+                                    <p>
+                                        I hereby declare that the information I have provided in relation to the nominated super fund is true and correct and I am authorised to
+                                        provide the information requested.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <label for="fundSignature" class="form-label">
+                                                Signature
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" id="fundSignature" name="fundSignature" value="">
+                                            <p id="fundSignatureS" class="error"></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="dateFund" class="form-label">
+                                                Date
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <input type="date" name="dateFund" class="form-control" id="dateFund" value=""
+                                                   min="1997-01-01" max="2030-12-31">
+                                            <p id="dateFundS" class="error"></p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> If you have completed this section, this is the end of the form. Return this form to your employer as soon as possible.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="hidden_fields2" style="margin-top: 20px">
+                                <div id="hidden_field2" name="hidden">
+                                    <h2 class="fw-bolder" style="color:green;"><strong>Section C:</strong> My existing super fund</h2>
+                                    <h3>Employer to complete</h3>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> Employers must complete this section before providing the form to an employee
+                                    </p>
+                                    <div class="mb-3">
+                                        <label for="businessName" class="form-label">
+                                            Business name
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="businessName" name="businessName" value="">
+                                        <p id="businessNameS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessNumber" class="form-label">
+                                            Australian business number (ABN)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="businessNumber" name="businessNumber" value="">
+                                        <p id="businessNumberS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessFundName" class="form-label">
+                                            Super fund name
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="businessFundName" name="businessFundName" value="">
+                                        <p id="businessFundNameS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessFundNumber" class="form-label">
+                                            Super fund Australian business number (ABN)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="businessFundNumber" name="businessFundNumber" value="">
+                                        <p id="businessFundNumberS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessAnnuationIdentifi" class="form-label">
+                                            Unique superannuation identifier (USI)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="businessAnnuationIdentifi" name="businessAnnuationIdentifi" value="">
+                                        <p id="businessAnnuationIdentifiS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> Make sure the employer default super fund details above have been completed by your employer before you use this form.
+                                        Ask your employer if it hasn’t been done
+                                    </p>
+                                    <div class="mb-3">
+                                        <input class="form-check-input" type="checkbox" value="true" id="businessNewAccount" name="businessNewAccount">
+                                        <label class="form-check-label" for="businessNewAccount">
+                                            I choose for my employer to open a new account for me with their default super fund
+                                        </label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <label for="signatureEmloyee" class="form-label">
+                                                Signature
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" id="signatureEmloyee" name="signatureEmloyee" value="">
+                                            <p id="signatureEmloyeeS" class="error"></p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="dateBusiness" class="form-label">
+                                                Date
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <input type="date" name="dateBusiness" class="form-control" id="dateBusiness"
+                                                   placeholder="dd-mm-yyyy" value=""
+                                                   min="1997-01-01" max="2030-12-31">
+                                            <p id="dateBusinessS" class="error"></p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> If you have completed this section, this is the end of the form. Return this form to your employer as soon as possible.
+                                    </p>
+                                    <p>Information fot<strong>Employers</strong></p>
+                                </div>
+                            </div>
+                            <div id="hidden_fields3" style="margin-top: 20px">
+                                <div id="hidden_field3" name="hidden">
+                                    <h2 class="fw-bolder" style="color: #a92222;"><strong>Section D:</strong> My existing super fund</h2>
+                                    <h3>SMSF details</h3>
+                                    <div class="mb-3">
+                                        <label for="smsfName" class="form-label">
+                                            SMSF name
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="smsfName" name="smsfName" value="">
+                                        <p id="smsfNameS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="smsfNumber" class="form-label">
+                                            SMSF Australian business number (ABN)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="smsfNumber" name="smsfNumber" value="">
+                                        <p id="smsfNumberS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="smsfServiceAddress" class="form-label">
+                                            SMSF electronic service address (ESA)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="smsfServiceAddress" name="smsfServiceAddress" value="">
+                                        <p id="smsfServiceAddressS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> An ESA is used so the fund can receive electronic messages and payments from your employer using SuperStream. You can find
+                                        your ESA by contacting your SMSF messaging provider or through your SMSF administrator, tax agent, accountant or bank.
+                                    </p>
+                                    <div class="mb-3">
+                                        <label for="smsfAppearAccount" class="form-label">
+                                            Your full name as it appears on your account
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="smsfAppearAccount" name="smsfAppearAccount" value="">
+                                        <p id="smsfAppearAccountS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> This must match the name shown on your super account. This may be your current name, or a previous name.
+                                    </p>
+                                    <p>
+                                        <strong>SMSF bank account details</strong>
+                                    </p>
+                                    <div class="mb-3">
+                                        <label for="bankAccountName" class="form-label">
+                                            Bank account name
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="bankAccountName" name="bankAccountName" value="">
+                                        <p id="bankAccountNameS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bsbCode" class="form-label">
+                                            BSB code (please include all six numbers)
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="bsbCode" name="bsbCode" value="">
+                                        <p id="bsbCodeS" class="error"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="smsfAcountNumber" class="form-label">
+                                            Account number
+                                            <span class="required-star">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="smsfAcountNumber" name="smsfAcountNumber" value="">
+                                        <p id="smsfAcountNumberS" class="error"></p>
+                                    </div>
+                                    <p>
+                                        <strong>Required documentation</strong>
+                                    </p>
+                                    <p>
+                                        You need to <strong>attach a document</strong> confirming the SMSF is an ATO regulated super fund. You can find a copy of the compliance status for
+                                        your SMSF at <strong>superfundlookup.gov.au</strong>
+                                    </p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="true" id="haveAtoSmsf">
+                                        <label class="form-check-label" for="haveAtoSmsf">
+                                            I have provided evidence from the ATO this is a regulated SMSF
+                                        </label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <label for="signatureSmsf" class="form-label">
+                                                Signature
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <p id="signatureSmsfS" class="error"></p>
+                                            <input type="text" class="form-control" id="signatureSmsf" name="signatureSmsf" value="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="dateSmsf" class="form-label">
+                                                Date
+                                                <span class="required-star">*</span>
+                                            </label>
+                                            <input type="date" name="dateSmsf" class="form-control" id="dateSmsf"
+                                                   placeholder="dd-mm-yyyy" value=""
+                                                   min="1997-01-01" max="2030-12-31">
+                                            <p id="dateSmsfS" class="error"></p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        I hereby declare that the information I have provided in relation to the nominated super fund is true and correct and I am authorised to
+                                        provide the information requested
+                                    </p>
+                                    <p>
+                                        <i class="fa-solid fa-circle-info"></i> If you have completed this section, this is the end of the form. Return this form to your employer as soon as possible.
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-stack pt-10">
+                        <!--begin::Wrapper-->
+                        <div class="mr-2">
+                            <button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous" onclick="getBankAccountStep()">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+                                <span class="svg-icon svg-icon-4 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="black"></rect>
+                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="black"></path>
+                                    </svg>
+                                </span>
+                                Back
+                            </button>
+                        </div>
+                        <!--end::Wrapper-->
+                        <!--begin::Wrapper-->
+                        <div>
+                            <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next" onclick="submitSuperAnnuation()">
+                                Save & Continue
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                                <span class="svg-icon svg-icon-4 ms-1 me-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="black"></rect>
+                                        <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </button>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/superAnnuation.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.js"></script>
+}
